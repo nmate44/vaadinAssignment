@@ -1,5 +1,7 @@
 package com.example.vaadinassignment.data.manufacturer.entity;
 
+import com.example.vaadinassignment.data.core.entity.CoreEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,20 +9,9 @@ import javax.persistence.Table;
 
 @Table(name = "manufacturer")
 @Entity
-public class ManufacturerEntity {
-    @Id
-    @Column(name = "id")
-    private int id;
+public class ManufacturerEntity extends CoreEntity {
     @Column(name = "name")
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

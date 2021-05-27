@@ -1,5 +1,7 @@
 package com.example.vaadinassignment.data.vehicle.entity;
 
+import com.example.vaadinassignment.data.core.entity.CoreEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,10 +9,7 @@ import javax.persistence.Table;
 
 @Table(name = "car")
 @Entity
-public class VehicleEntity {
-    @Id
-    @Column(name = "id")
-    private int id;
+public class VehicleEntity extends CoreEntity {
     @Column(name = "type")
     private String type;
     @Column(name = "manufacturer")
@@ -19,14 +18,6 @@ public class VehicleEntity {
     private int doors;
     @Column(name = "productionyear")
     private int productionYear;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;
