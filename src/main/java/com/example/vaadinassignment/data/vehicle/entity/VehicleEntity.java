@@ -1,10 +1,23 @@
 package com.example.vaadinassignment.data.vehicle.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "car")
+@Entity
 public class VehicleEntity {
+    @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "type")
     private String type;
+    @Column(name = "manufacturer")
     private String manufacturer;
+    @Column(name = "doors")
     private int doors;
+    @Column(name = "productionyear")
     private int productionYear;
 
     public int getId() {

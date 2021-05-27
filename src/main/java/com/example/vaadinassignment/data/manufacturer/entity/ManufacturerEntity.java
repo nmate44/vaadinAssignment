@@ -1,7 +1,17 @@
 package com.example.vaadinassignment.data.manufacturer.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "manufacturer")
+@Entity
 public class ManufacturerEntity {
+    @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "name")
     private String name;
 
     public int getId() {
