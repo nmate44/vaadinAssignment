@@ -24,7 +24,7 @@ public class VehicleView extends VerticalLayout {
         List<VehicleEntity> vehicleList = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             VehicleEntity vehicle = new VehicleEntity();
-            vehicle.setId(i);
+            //vehicle.setId(i);
             vehicle.setType("Vehicle" + i);
             vehicle.setManufacturer("Manufacturer" + i);
             vehicle.setDoors(4);

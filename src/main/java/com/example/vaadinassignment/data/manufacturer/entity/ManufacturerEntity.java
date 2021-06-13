@@ -4,7 +4,6 @@ import com.example.vaadinassignment.data.core.entity.CoreEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "manufacturer")

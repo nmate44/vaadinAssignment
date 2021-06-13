@@ -4,9 +4,12 @@ import com.example.vaadinassignment.data.core.entity.CoreEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public abstract class CoreCRUDServiceImpl <T extends CoreEntity> implements CoreCRUDService<T> {
+
     @Autowired
     protected EntityManager entityManager;
 
@@ -24,7 +27,7 @@ public abstract class CoreCRUDServiceImpl <T extends CoreEntity> implements Core
     public void remove(T entity) { entityManager.remove(findById(entity.getId())); }
 
     @Override
-    public T findById(int id) { return entityManager.find(getManagedClass(), id); }
+    public T findById(Long id) { return entityManager.find(getManagedClass(), id); }
 
     @Override
     public List<T> getAll() {
