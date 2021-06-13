@@ -26,6 +26,7 @@ public class ManufacturerView extends VerticalLayout {
     private VerticalLayout form;
     private TextField name;
     private Button deleteBtn = new Button("Delete", VaadinIcon.TRASH.create());
+
     ManufacturerEntity selectedManufacturer;
     private Binder<ManufacturerEntity> binder;
 

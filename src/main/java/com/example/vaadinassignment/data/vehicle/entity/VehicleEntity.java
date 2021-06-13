@@ -1,23 +1,25 @@
 package com.example.vaadinassignment.data.vehicle.entity;
 
 import com.example.vaadinassignment.data.core.entity.CoreEntity;
+import com.example.vaadinassignment.data.manufacturer.entity.ManufacturerEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "car")
 @Entity
 public class VehicleEntity extends CoreEntity {
     @Column(name = "type")
     private String type;
-    @Column(name = "manufacturer")
-    private String manufacturer;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturer")
+    private ManufacturerEntity manufacturer;
+
     @Column(name = "doors")
-    private int doors;
+    private Long doors;
+
     @Column(name = "productionyear")
-    private int productionYear;
+    private Long productionYear;
 
     public String getType() {
         return type;
@@ -27,27 +29,27 @@ public class VehicleEntity extends CoreEntity {
         this.type = type;
     }
 
-    public String getManufacturer() {
+    public ManufacturerEntity getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(ManufacturerEntity manufacturer) {
         this.manufacturer = manufacturer;
     }
 
-    public int getDoors() {
+    public Long getDoors() {
         return doors;
     }
 
-    public void setDoors(int doors) {
+    public void setDoors(Long doors) {
         this.doors = doors;
     }
 
-    public int getProductionYear() {
+    public Long getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(int productionYear) {
+    public void setProductionYear(Long productionYear) {
         this.productionYear = productionYear;
     }
 }
