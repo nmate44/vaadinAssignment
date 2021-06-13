@@ -39,6 +39,7 @@ public class ManufacturerView extends VerticalLayout {
         title.setHeight("1em");
         add(title);
         add(new NavbarComponent());
+
         Grid<ManufacturerEntity> manufacturerGrid = new Grid<>();
         manufacturerGrid.setItems(service.getAll());
         manufacturerGrid.addColumn(ManufacturerEntity::getId).setHeader("Id");
@@ -49,6 +50,7 @@ public class ManufacturerView extends VerticalLayout {
             form.setVisible(selectedManufacturer != null);
             deleteBtn.setEnabled(selectedManufacturer != null);
         });
+
         addButtonBar(manufacturerGrid);
         add(manufacturerGrid);
         addForm(manufacturerGrid);
@@ -103,6 +105,7 @@ public class ManufacturerView extends VerticalLayout {
             binder.setBean(selectedManufacturer);
             form.setVisible(true);
         });
+
         horizontalLayout.add(deleteBtn);
         horizontalLayout.add(addBtn);
         add(horizontalLayout);

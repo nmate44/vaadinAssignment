@@ -9,10 +9,12 @@ public class NavbarComponent extends HorizontalLayout {
         home.setText("Home");
         home.setHref("/");
         add(home);
+
         Anchor vehicles = new Anchor();
         vehicles.setText("Vehicles");
         vehicles.setHref("/vehicle");
         add(vehicles);
+
         Anchor manufacturers = new Anchor();
         manufacturers.setText("Manufacturers");
         manufacturers.setHref("/manufacturer");

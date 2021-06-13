@@ -49,6 +49,7 @@ public class VehicleView extends VerticalLayout {
         title.setHeight("1em");
         add(title);
         add(new NavbarComponent());
+
         Grid<VehicleEntity> grid = new Grid<>();
         grid.setItems(service.getAll());
         grid.addColumn(VehicleEntity::getId).setHeader("Id");
@@ -69,6 +70,7 @@ public class VehicleView extends VerticalLayout {
             deleteBtn.setEnabled(selectedVehicle != null);
 
         });
+
         addButtonBar(grid);
         add(grid);
         addForm(grid);

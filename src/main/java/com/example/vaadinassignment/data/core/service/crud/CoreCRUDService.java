@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface CoreCRUDService <T extends CoreEntity> {
+
     @Transactional
     void add(T entity);
 
