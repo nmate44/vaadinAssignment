@@ -52,17 +52,17 @@ public class VehicleView extends VerticalLayout {
 
         Grid<VehicleEntity> grid = new Grid<>();
         grid.setItems(service.getAll());
-        grid.addColumn(VehicleEntity::getId).setHeader("Id");
-        grid.addColumn(VehicleEntity::getType).setHeader("Type");
+        grid.addColumn(VehicleEntity::getId).setHeader("Id").setSortable(true);
+        grid.addColumn(VehicleEntity::getType).setHeader("Type").setSortable(true);
         grid.addColumn(vehicleEntity -> {
                     if (vehicleEntity.getManufacturer() != null) {
                         return vehicleEntity.getManufacturer().getName();
                     }
                     return "";
                 }
-        ).setHeader("Manufacturer");
-        grid.addColumn(VehicleEntity::getProductionYear).setHeader("Production Yr");
-        grid.addColumn(VehicleEntity::getDoors).setHeader("Doors");
+        ).setHeader("Manufacturer").setSortable(true);
+        grid.addColumn(VehicleEntity::getProductionYear).setHeader("Production Yr").setSortable(true);
+        grid.addColumn(VehicleEntity::getDoors).setHeader("Doors").setSortable(true);
         grid.asSingleSelect().addValueChangeListener(event -> {
             selectedVehicle = event.getValue();
             binder.setBean(selectedVehicle);

@@ -13,6 +13,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,8 @@ public class ManufacturerView extends VerticalLayout {
 
         Grid<ManufacturerEntity> manufacturerGrid = new Grid<>();
         manufacturerGrid.setItems(service.getAll());
-        manufacturerGrid.addColumn(ManufacturerEntity::getId).setHeader("Id");
-        manufacturerGrid.addColumn(ManufacturerEntity::getName).setHeader("Name");
+        manufacturerGrid.addColumn(ManufacturerEntity::getId).setHeader("Id").setSortable(true);
+        manufacturerGrid.addColumn(ManufacturerEntity::getName).setHeader("Name").setSortable(true);
         manufacturerGrid.asSingleSelect().addValueChangeListener(event -> {
             selectedManufacturer = event.getValue();
             binder.setBean(selectedManufacturer);
@@ -108,7 +109,17 @@ public class ManufacturerView extends VerticalLayout {
 
         horizontalLayout.add(deleteBtn);
         horizontalLayout.add(addBtn);
+        horizontalLayout.add(addNameFilter(grid));
         add(horizontalLayout);
     }
 
+    private TextField addNameFilter(Grid<ManufacturerEntity> grid) {
+        TextField nameFilter = new TextField();
+        nameFilter.setPlaceholder("Filter by Name");
+        nameFilter.setClearButtonVisible(true);
+        nameFilter.setValueChangeMode(ValueChangeMode.LAZY);
+        nameFilter.addValueChangeListener(e ->
+                grid.setItems(service.getAllByFilter(nameFilter.getValue())));
+        return nameFilter;
+    }
 }
