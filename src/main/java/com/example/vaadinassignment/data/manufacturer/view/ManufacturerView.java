@@ -119,7 +119,8 @@ public class ManufacturerView extends VerticalLayout {
         nameFilter.setClearButtonVisible(true);
         nameFilter.setValueChangeMode(ValueChangeMode.LAZY);
         nameFilter.addValueChangeListener(e ->
-                grid.setItems(service.getAllByFilter(nameFilter.getValue())));
+                grid.setItems(service.getAllByFilter(nameFilter.getValue()))
+        );
         return nameFilter;
     }
 }

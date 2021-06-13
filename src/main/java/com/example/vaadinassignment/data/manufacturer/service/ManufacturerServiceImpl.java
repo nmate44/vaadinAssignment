@@ -22,7 +22,7 @@ public class ManufacturerServiceImpl extends CoreCRUDServiceImpl<ManufacturerEnt
             return getAll();
         } else {
             return entityManager.createQuery(
-                    "SELECT n FROM " + ManufacturerEntity.class.getSimpleName() + " n WHERE LOWER(n.name) LIKE LOWER(CONCAT('%', '" + filter + "', '%'))"
+                    "SELECT n FROM " + ManufacturerEntity.class.getSimpleName() + " n WHERE LOWER(n.name) LIKE LOWER(CONCAT('" + filter + "', '%'))"
             ).getResultList();
         }
     }

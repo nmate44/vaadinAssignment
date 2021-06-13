@@ -17,6 +17,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.converter.StringToLongConverter;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class VehicleView extends VerticalLayout {
     private TextField production;
     private TextField doors;
     private Button deleteBtn = new Button("Delete", VaadinIcon.TRASH.create());
+
+    private TextField nameFilter;
+    private TextField prodYrFilter;
 
     private VehicleEntity selectedVehicle;
     private Binder<VehicleEntity> binder;
@@ -162,6 +166,50 @@ public class VehicleView extends VerticalLayout {
 
         horizontalLayout.add(deleteBtn);
         horizontalLayout.add(addBtn);
+        horizontalLayout.add(addNameFilter(grid));
+        horizontalLayout.add(addProdYrFilter(grid));
+        horizontalLayout.add(addFilterSwitchBtn(grid));
         add(horizontalLayout);
+    }
+
+    private Button addFilterSwitchBtn(Grid<VehicleEntity> grid) {
+        Button filterSwitchBtn = new Button("Change Filter", VaadinIcon.FILTER.create());
+        filterSwitchBtn.addClickListener(buttonClickEvent -> {
+            if(nameFilter.isVisible()) {
+                nameFilter.setVisible(false);
+                prodYrFilter.setVisible(true);
+            } else if(prodYrFilter.isVisible()) {
+                prodYrFilter.setVisible(false);
+                nameFilter.setVisible(true);
+            }
+            nameFilter.setValue("");
+            prodYrFilter.setValue("");
+            grid.setItems(service.getAll());
+        });
+        return filterSwitchBtn;
+    }
+
+    private TextField addNameFilter(Grid<VehicleEntity> grid) {
+        nameFilter = new TextField();
+        nameFilter.setPlaceholder("Filter by Name");
+        nameFilter.setClearButtonVisible(true);
+        nameFilter.setValueChangeMode(ValueChangeMode.LAZY);
+        nameFilter.addValueChangeListener(e ->
+                grid.setItems(service.getAllByNameFilter(nameFilter.getValue()))
+        );
+        nameFilter.setVisible(true);
+        return nameFilter;
+    }
+
+    private TextField addProdYrFilter(Grid<VehicleEntity> grid) {
+        prodYrFilter = new TextField();
+        prodYrFilter.setPlaceholder("Filter by Production Yr");
+        prodYrFilter.setClearButtonVisible(true);
+        prodYrFilter.setValueChangeMode(ValueChangeMode.LAZY);
+        prodYrFilter.addValueChangeListener(e ->
+                grid.setItems(service.getAllByProdYrFilter(prodYrFilter.getValue()))
+        );
+        prodYrFilter.setVisible(false);
+        return prodYrFilter;
     }
 }
