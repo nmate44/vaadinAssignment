@@ -27,18 +27,16 @@ public class UserAppInitConfig {
         if (roleEntities.isEmpty()) {
             admin.setAuthority("ROLE_ADMIN");
             roleService.add(admin);
-
         }
 
         List<UserEntity> userEntities = userService.getAll();
         if (userEntities.isEmpty()) {
             UserEntity entity = new UserEntity();
-            entity.setPassword(new BCryptPasswordEncoder().encode("alamfa123"));
+            entity.setPassword(new BCryptPasswordEncoder().encode("admin"));
             entity.setUsername("admin");
             entity.setAuthorities(new ArrayList<>());
             entity.getAuthorities().add(admin);
             userService.add(entity);
-
         }
     }
 }
